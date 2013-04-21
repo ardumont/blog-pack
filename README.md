@@ -2,6 +2,13 @@
 
 This is a pack to help in setup org2blog to use with one's blog
 
+# install
+
+In your `.emacs-live.el` add this snippet:
+```elisp
+(live-add-packs '(blog-pack))
+```
+
 # Setup
 
 Create a `~/.netrc` file with your wordpress credentials:
