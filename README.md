@@ -1,6 +1,7 @@
-# blog-pack
+blog-pack
+=========
 
-This is a pack to help in setup org2blog to use with one's blog
+A pack to help in setup `org2blog` to use with one's wordpress blog.
 
 # install
 
