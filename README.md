@@ -1,7 +1,11 @@
 blog-pack
 =========
 
-A pack to wrap the setuping of [org2blog](https://github.com/punchagan/org2blog), an excellent org-mode to wordpress mode for emacs.
+# Overview
+
+A pack to wrap the setuping of [org2blog](https://github.com/punchagan/org2blog), an excellent [org-mode](http://orgmode.org/) to [wordpress](http://wordpress.org/) mode for [emacs](https://www.gnu.org/software/emacs/).
+
+This is licensed under [GPLv3](http://gplv3.fsf.org/).
 
 # install
 
