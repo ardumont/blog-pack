@@ -7,7 +7,7 @@ A pack to wrap the setuping of [org2blog](https://github.com/punchagan/org2blog)
 
 In your `.emacs-live.el` add this snippet:
 ```elisp
-(live-add-packs '(blog-pack))
+(live-add-packs '("/path/to/blog-pack"))
 ```
 
 # Setup
