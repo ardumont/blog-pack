@@ -57,3 +57,5 @@ Open a org-mode file and write whatever you wish.
 
 When ready to publish a draft, hit `C-t d`.
 When ready to publish, hit `C-t p`.
+
+[More informations](http://adumont.fr/blog/emacs-live-pack-blog-pack/)
