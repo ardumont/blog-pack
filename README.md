@@ -7,6 +7,14 @@ A pack to wrap the setuping of [org2blog](https://github.com/punchagan/org2blog)
 
 This is licensed under [GPLv3](http://gplv3.fsf.org/).
 
+# prerequisites
+
+Install org-mode from your package manager
+
+```sh
+sudo aptitude install -y org-mode
+```
+
 # install
 
 In your `.emacs-live.el` add this snippet:
