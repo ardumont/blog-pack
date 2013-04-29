@@ -1,5 +1,4 @@
-(install-packs '(org-ehtml
-                 ;; need org2blog as a glue between org-mode and wordpress
+(install-packs '(;; need org2blog as a glue between org-mode and wordpress
                  xml-rpc
                  org2blog))
 
