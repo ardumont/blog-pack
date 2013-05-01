@@ -7,7 +7,7 @@ A pack to wrap the setuping of [org2blog](https://github.com/punchagan/org2blog)
 
 This is licensed under [GPLv3](http://gplv3.fsf.org/).
 
-# prerequisites
+# Prerequisites
 
 Install org-mode from your package manager
 
@@ -15,7 +15,7 @@ Install org-mode from your package manager
 sudo aptitude install -y org-mode
 ```
 
-# install
+# Install
 
 In your `.emacs-live.el` add this snippet:
 ```elisp
@@ -26,7 +26,7 @@ In your `.emacs-live.el` add this snippet:
 
 Create a `~/.netrc` file with your wordpress credentials your blog description:
 
-## credentials
+## Credentials
 
 In a line, add your wordpress credentials in a `machine blog` line:
 ```txt
@@ -42,7 +42,7 @@ machine blog login tony password "this is a password for my blog"
 
 *Note* If you have space in your password, indeed quote the password with ".
 
-## description
+## Description
 
 In another line, add the `machine blog-description` entry like this:
 ```txt
@@ -58,7 +58,7 @@ The `machine blog-description` is static too, so do not change it.
 
 Ok, now you're all ready to go.
 
-# run
+# Run
 
 Start emacs.
 Open a org-mode file and write whatever you wish.
@@ -66,7 +66,7 @@ Open a org-mode file and write whatever you wish.
 When ready to publish a draft, hit `C-t d`.
 When ready to publish, hit `C-t p`.
 
-# more info
+# More
 
 - [demo](http://www.youtube.com/watch?feature=player_detailpage&v=qTYCFu_NEFM#t=4s)
 - [article](http://adumont.fr/blog/emacs-live-pack-blog-pack/)
