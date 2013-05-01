@@ -29,14 +29,14 @@ Create a `~/.netrc` file with your wordpress credentials your blog description:
 ## Credentials
 
 In a line, add your wordpress credentials in a `machine blog` line:
-```txt
+```
 machine blog login some-login password some-password
 ```
 
 The `machine blog` is static, do not change it.
 
 Example:
-```txt
+```
 machine blog login tony password "this is a password for my blog"
 ```
 
@@ -45,7 +45,7 @@ machine blog login tony password "this is a password for my blog"
 ## Description
 
 In another line, add the `machine blog-description` entry like this:
-```txt
+```
 machine blog-description blog-name your-blog-name blog-url-rpc http://your-wordpress-blog.com/blog/xmlrpc.php
 ```
 
