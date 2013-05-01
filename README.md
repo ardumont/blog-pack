@@ -50,7 +50,7 @@ machine blog-description blog-name your-blog-name blog-url-rpc http://your-wordp
 ```
 
 Example:
-```txt
+```
 machine blog-description blog-name tony-blog blog-url-rpc http://tony-blog.fr/blog/xmlrpc.php
 ```
 
