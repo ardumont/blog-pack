@@ -2,14 +2,21 @@
                  xml-rpc
                  org2blog))
 
-(defun installation-possible-p (creds-file)
+;; ===================== setup file
+
+;; credentials using netrc (it can deal with space in entries)
+(setq blog-pack--credentials-file (concat (getenv "HOME") "/.netrc"))
+
+;; ===================== setup functions
+
+(defun blog-pack--setup-possible-p (creds-file)
   "Check if the installation is possible by checking the existence of the file and that the entry 'blog' and 'blog-description' are indeed installed."
   (let ((parsed-file (netrc-parse creds-file)))
     (and parsed-file ;; nil if the file does not exist
          (netrc-machine parsed-file "blog")
          (netrc-machine parsed-file "blog-description"))))
 
-(defun setup-org2blog (creds-file)
+(defun blog-pack--setup (creds-file)
   "The org2blog setup (no check on the existence of the file)."
   ;; hack - there is some dep that has been broken since punchagan separated org2blog and metaweblog.el (https://github.com/punchagan/metaweblog.el)
   (live-add-pack-lib "metaweblog")
@@ -44,16 +51,15 @@
 
   (add-hook 'org-mode-hook 'org2blog/wp-mode))
 
-;; credentials using netrc (it can deal with space in entries)
-(setq credentials-file (concat (getenv "HOME") "/.netrc"))
+;; ===================== setup routine
 
-(if (installation-possible-p credentials-file)
+(if (blog-pack--setup-possible-p blog-pack--credentials-file)
     (progn
-      (message (concat credentials-file "found! Setup org2blog..."))
-      (setup-org2blog credentials-file)
+      (message (concat blog-pack--credentials-file "found! Setup org2blog..."))
+      (blog-pack--setup blog-pack--credentials-file)
       (message "Setup done!"))
   (progn
-    (message (concat "You need to setup the credentials file " credentials-file " for this to work.\n"
-                     "Here is the needed content to setup to your need into '" credentials-file "':\n"
+    (message (concat "You need to setup the credentials file " blog-pack--credentials-file " for this to work.\n"
+                     "Here is the needed content to setup to your need into '" blog-pack--credentials-file "':\n"
                      "machine blog login <your-wordpress-login> password <your-wordpress-password-inside-quote>\n"
                      "machine blog-description blog-name <blog-name-you-desire> blog-url-rpc http://<path-to-your-blog-ip-and-folder>/xmlrpc.php\n"))))
