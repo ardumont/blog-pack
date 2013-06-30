@@ -2,7 +2,7 @@
                  xml-rpc
                  org2blog))
 
-(defun setup-org2blog (netrcfile)
+(defun setup-org2blog (creds-file)
   "The org2blog setup (no check on the existence of the file)."
   ;; hack - there is some dep that has been broken since punchagan separated org2blog and metaweblog.el (https://github.com/punchagan/metaweblog.el)
   (live-add-pack-lib "metaweblog")
@@ -15,14 +15,14 @@
   (require 'creds)
 
   ;; load the entry tony-blog in the ~/.netrc, we obtain a hash-map with the needed data
-  (setq blog (netrc-machine (netrc-parse netrc-file) "blog" t))
+  (setq blog (netrc-machine (netrc-parse creds-file) "blog" t))
 
   (setq blog-login (netrc-get blog "login"))
   (setq blog-pass (netrc-get blog "password"))
 
   ;; blog description using creds (no dealing with space at the moment)
 
-  (setq blog-description (get-creds (read-lines netrc-file) "blog-description"))
+  (setq blog-description (get-creds (read-lines creds-file) "blog-description"))
 
   ;; name of the blog
   (setq blog-name (get-entry blog-description "blog-name"))
