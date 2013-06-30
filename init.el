@@ -2,6 +2,14 @@
                  xml-rpc
                  org2blog))
 
+;; ===================== lib deps
+
+;; depends on netrc, xml-rpc
+(require 'org2blog-autoloads)
+(require 'metaweblog)
+(require 'netrc)
+(require 'creds)
+
 ;; ===================== setup file
 
 ;; credentials using netrc (it can deal with space in entries)
@@ -21,12 +29,6 @@
   ;; hack - there is some dep that has been broken since punchagan separated org2blog and metaweblog.el (https://github.com/punchagan/metaweblog.el)
   (live-add-pack-lib "metaweblog")
   (live-add-pack-lib "creds")
-
-  ;; depends on netrc, xml-rpc
-  (require 'org2blog-autoloads)
-  (require 'netrc)
-  (require 'metaweblog)
-  (require 'creds)
 
   ;; load the entry tony-blog in the ~/.netrc, we obtain a hash-map with the needed data
   (setq blog (netrc-machine (netrc-parse creds-file) "blog" t))
