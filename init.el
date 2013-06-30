@@ -55,7 +55,7 @@
 
 (if (blog-pack--setup-possible-p blog-pack--credentials-file)
     (progn
-      (message (concat blog-pack--credentials-file "found! Setup org2blog..."))
+      (message (concat blog-pack--credentials-file " found! Running org2blog setup..."))
       (blog-pack--setup blog-pack--credentials-file)
       (message "Setup done!"))
   (progn
