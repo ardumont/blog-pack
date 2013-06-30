@@ -2,6 +2,13 @@
                  xml-rpc
                  org2blog))
 
+(defun installation-possible-p (creds-file)
+  "Check if the installation is possible by checking the existence of the file and that the entry 'blog' and 'blog-description' are indeed installed."
+  (let ((parsed-file (netrc-parse creds-file)))
+    (and parsed-file ;; nil if the file does not exist
+         (netrc-machine parsed-file "blog")
+         (netrc-machine parsed-file "blog-description"))))
+
 (defun setup-org2blog (creds-file)
   "The org2blog setup (no check on the existence of the file)."
   ;; hack - there is some dep that has been broken since punchagan separated org2blog and metaweblog.el (https://github.com/punchagan/metaweblog.el)
@@ -40,7 +47,7 @@
 ;; credentials using netrc (it can deal with space in entries)
 (setq credentials-file (concat (getenv "HOME") "/.netrc"))
 
-(if (file-exists-p credentials-file)
+(if (installation-possible-p credentials-file)
     (progn
       (message (concat credentials-file "found! Setup org2blog..."))
       (setup-org2blog credentials-file)
