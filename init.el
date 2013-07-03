@@ -1,12 +1,12 @@
 (install-packs '(;; need org2blog as a glue between org-mode and wordpress
                  xml-rpc
-                 org2blog))
+                 org2blog
+                 metaweblog))
 
 ;; ===================== lib deps
 
 ;; depends on netrc, xml-rpc
 (require 'org2blog-autoloads)
-(require 'metaweblog)
 (require 'netrc)
 (require 'creds)
 
