@@ -26,8 +26,6 @@
 
 (defun blog-pack--setup (creds-file)
   "The org2blog setup (no check on the existence of the file)."
-  ;; hack - there is some dep that has been broken since punchagan separated org2blog and metaweblog.el (https://github.com/punchagan/metaweblog.el)
-  (live-add-pack-lib "metaweblog")
   (live-add-pack-lib "creds")
 
   ;; load the entry tony-blog in the ~/.netrc, we obtain a hash-map with the needed data
