@@ -1,14 +1,10 @@
 (install-packs '(;; need org2blog as a glue between org-mode and wordpress
                  xml-rpc
-                 org2blog
-                 metaweblog))
+                 org2blog))
 
-;; ===================== lib deps
+;; ===================== lib
 
-;; depends on netrc, xml-rpc
-(require 'org2blog-autoloads)
 (require 'netrc)
-(require 'creds)
 
 ;; ===================== setup file
 
@@ -24,7 +20,10 @@
          (netrc-machine parsed-file "blog-description"))))
 
 (defun blog-pack/--setup (creds-file) "The org2blog setup (no check on the existence of the file)."
+  (live-add-pack-lib "metaweblog")
   (live-add-pack-lib "creds")
+  (require 'creds)
+  (require 'org2blog-autoloads)
 
   ;; load the entry tony-blog in the ~/.netrc, we obtain a hash-map with the needed data
   (setq blog (netrc-machine (netrc-parse creds-file) "blog" t))
