@@ -5,7 +5,7 @@
 
 ;; Author: Antoine R. Dumont <eniotna.t@gmail.com>
 ;; Keywords: credentials
-;; Version: 0.1
+;; Version: 0.2
 
 ;; This file is part of GNU Emacs.
 
@@ -36,35 +36,38 @@
 ;; machine jabber         login some-login password some-pwd
 ;; machine description    name "my name is" blog some-blog mail some-mail
 
-(defun creds/read-lines (filepath) "Return a list of lines from a file."
+(defun creds/read-lines (filepath)
+  "Return a list of lines from a file."
   (with-temp-buffer
     (insert-file-contents filepath)
     (mapcar (lambda (l) (split-string l "[ ]+")) (split-string (buffer-string) "\n" t))))
 
 ;; Here is the result
-;; (read-lines "~/.authinfo")
+;; (creds/read-lines "~/.authinfo")
 ;; (("machine" "machine0" "port" "http" "login" "nouser" "password" "nopass")
 ;;  ("machine" "machine1" "login" "some-login" "password" "some-pwd" "port" "993")
 ;;  ("machine" "machine2" "login" "some-login" "port" "587" "password" "some-pwd")
 ;;  ("machine" "jabber" "login" "some-login" "password" "some-pwd")
 ;;  ("machine" "description" "name" "\"my" "name" "is\"" "blog" "some-blog" "mail" "some-mail"))
-;; (setq dat (read-lines "~/.authinfo"))
+;; (setq dat (creds/read-lines "~/.authinfo"))
 
-(defun creds/get-creds (data entry-name) "Return the data list for the line entry-name"
+(defun creds/get (data entry-name)
+  "Return the data list for the line entry-name"
   (if data
       (let* ((d     (car data))
              (entry (cadr d)))
         (if (equal entry entry-name)
             d
-          (creds/get-creds (cdr data) entry-name)))))
+          (creds/get (cdr data) entry-name)))))
 
-;; (get-creds dat "machine0")
+;; (creds/get dat "machine0")
 ;; ("machine" "machine0" "port" "http" "login" "nouser" "password" "nopass")
 
-;; (get-creds dat "nil")
+;; (creds/get dat "nil")
 ;; nil
 
-(defun creds/get-entry (data entry) "Given a data list, return the entry in that list"
+(defun creds/get-entry (data entry)
+  "Given a data list, return the entry in that list"
   (if data
       (let* ((k (car data))
              (v (cadr data)))
@@ -72,16 +75,16 @@
             v
           (creds/get-entry (cddr data) entry)))))
 
-;; (setq machine (get-creds dat "machine0"))
-;; (get-entry machine "machine")
+;; (setq machine (creds/get dat "machine0"))
+;; (creds/get-entry machine "machine")
 ;; "machine0"
-;; (get-entry machine "port")
+;; (creds/get-entry machine "port")
 ;; "http"
-;; (get-entry machine "login")
+;; (creds/get-entry machine "login")
 ;; "nouser"
-;; (get-entry machine "password")
+;; (creds/get-entry machine "password")
 ;; "nopass"
 
 (provide 'creds)
 
-;;; gnus.el ends here
+;;; creds.el ends here
