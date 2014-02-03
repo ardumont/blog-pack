@@ -5,8 +5,9 @@
 ;; ===================== lib
 
 (require 'netrc)
-(load-file "lib/metaweblog.el")
-(load-file "lib/creds.el")
+
+(live-add-pack-lib "metaweblog.el")
+(live-add-pack-lib "creds.el")
 (require 'creds)
 (require 'org2blog-autoloads)
 
