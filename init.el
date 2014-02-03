@@ -5,6 +5,10 @@
 ;; ===================== lib
 
 (require 'netrc)
+(load-file "lib/metaweblog.el")
+(load-file "lib/creds.el")
+(require 'creds)
+(require 'org2blog-autoloads)
 
 ;; ===================== setup file
 
@@ -20,10 +24,6 @@
          (netrc-machine parsed-file "blog-description"))))
 
 (defun blog-pack/--setup (creds-file) "The org2blog setup (no check on the existence of the file)."
-  (live-add-pack-lib "metaweblog")
-  (live-add-pack-lib "creds")
-  (require 'creds)
-  (require 'org2blog-autoloads)
 
   ;; load the entry tony-blog in the ~/.netrc, we obtain a hash-map with the needed data
   (setq blog (netrc-machine (netrc-parse creds-file) "blog" t))
@@ -33,7 +33,7 @@
 
   ;; blog description using creds (wrap the password in " if there is space in it)
 
-  (setq blog-description (creds/get-creds (creds/read-lines creds-file) "blog-description"))
+  (setq blog-description (creds/get (creds/read-lines creds-file) "blog-description"))
 
   ;; name of the blog
   (setq blog-name (creds/get-entry blog-description "blog-name"))
