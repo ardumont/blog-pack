@@ -1,12 +1,14 @@
+(setq *TEMPORARY-PACKAGE-ARCHIVES* package-archives)
+
 (install-packs '(;; need org2blog as a glue between org-mode and wordpress
                  xml-rpc
-                 org2blog))
+                 org2blog)
+               (add-to-list '*TEMPORARY-PACKAGE-ARCHIVES* '("melpa" . "http://melpa.milkbox.net/packages/") t))
 
 ;; ===================== lib
 
 (require 'netrc)
 
-(live-add-pack-lib "metaweblog.el")
 (live-add-pack-lib "creds.el")
 (require 'creds)
 (require 'org2blog-autoloads)
