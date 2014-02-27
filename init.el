@@ -49,6 +49,13 @@
 
   (add-hook 'org-mode-hook 'org2blog/wp-mode))
 
+(add-hook 'org2blog/wp-mode-hook (lambda ()
+                                   (define-key org2blog/wp-entry-mode-map (kbd "C-c b p") 'org2blog/wp-post-buffer-and-publish)
+                                   (define-key org2blog/wp-entry-mode-map (kbd "C-c b P") 'org2blog/wp-post-buffer-as-page-and-publish)
+                                   (define-key org2blog/wp-entry-mode-map (kbd "C-c b d") 'org2blog/wp-post-buffer)
+                                   (define-key org2blog/wp-entry-mode-map (kbd "C-c b D") 'org2blog/wp-post-buffer-as-page)
+                                   (define-key org2blog/wp-entry-mode-map (kbd "C-c b t") 'org2blog/wp-complete-category)))
+
 ;; ===================== setup routine
 
 (if (blog-pack/--setup-possible-p *BLOG-PACK-CREDENTIALS-FILE*)
