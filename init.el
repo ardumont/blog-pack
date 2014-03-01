@@ -7,10 +7,12 @@
 (install-packs '(;; need org2blog as a glue between org-mode and wordpress
                  xml-rpc
                  org2blog
-                 creds))
+                 creds
+                 org))
 
 ;; ===================== lib
 
+(require 'org)
 (require 'netrc)
 (require 'creds)
 (require 'org2blog-autoloads)
