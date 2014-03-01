@@ -1,3 +1,9 @@
+;;; blog-pack.el --- Blog with org-mode and wordpress + credentials setup
+
+;;; Commentary:
+
+;;; Code:
+
 (setq *TEMPORARY-PACKAGE-ARCHIVES* package-archives)
 
 (install-packs '(;; need org2blog as a glue between org-mode and wordpress
@@ -68,3 +74,5 @@
                      "Here is the needed content to setup to your need into '" *BLOG-PACK-CREDENTIALS-FILE* "':\n"
                      "machine blog login <your-wordpress-login> password <your-wordpress-password-inside-quote>\n"
                      "machine blog-description blog-name <blog-name-you-desire> blog-url-rpc http://<path-to-your-blog-ip-and-folder>/xmlrpc.php\n"))))
+
+;;; blog-pack.el ends here
