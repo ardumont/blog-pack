@@ -4,13 +4,10 @@
 
 ;;; Code:
 
-(setq *TEMPORARY-PACKAGE-ARCHIVES* package-archives)
-
 (install-packs '(;; need org2blog as a glue between org-mode and wordpress
                  xml-rpc
                  org2blog
-                 creds)
-               (add-to-list '*TEMPORARY-PACKAGE-ARCHIVES* '("melpa" . "http://melpa.milkbox.net/packages/") t))
+                 creds))
 
 ;; ===================== lib
 
