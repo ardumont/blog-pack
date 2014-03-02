@@ -7,19 +7,22 @@ A pack to wrap the setuping of [org2blog](https://github.com/punchagan/org2blog)
 
 This is licensed under [GPLv3](http://gplv3.fsf.org/).
 
-# Prerequisites
-
-Install org-mode from your package manager
-
-```sh
-sudo aptitude install -y org-mode
-```
-
 # Install
 
-In your `.emacs-live.el` add this snippet:
+This is compatible with [emacs-live-packs](https://github.com/ardumont/emacs-live-packs) and [prelude-packs](https://github.com/ardumont/prelude-packs).
+
+## [emacs-live-packs](https://github.com/ardumont/emacs-live-packs)
+
+Add this snippet in your `.emacs-live.el`:
 ```elisp
-(live-add-packs '("/path/to/blog-pack"))
+(emacs-live-packs/add-live-packs "~/.emacs-live-packs/" '("blog-pack"))
+```
+
+## [prelude-packs](https://github.com/ardumont/prelude-packs)
+
+Add this snippet in your `prelude-packs.el`:
+```elisp
+(prelude-packs/load-packs "~/.prelude-packs/" '("blog-pack"))
 ```
 
 # Setup
