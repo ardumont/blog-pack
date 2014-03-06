@@ -54,15 +54,14 @@
 
   (add-hook 'org-mode-hook 'org2blog/wp-mode))
 
-(setq org2blog/wp-mode-hook)
 (add-hook 'org2blog/wp-mode-hook
           (lambda ()
             ;; undefine the existing binding
-            (define-key org2blog/wp-map (kbd "C-c p") nil)
-            (define-key org2blog/wp-map (kbd "C-c P") nil)
-            (define-key org2blog/wp-map (kbd "C-c d") nil)
-            (define-key org2blog/wp-map (kbd "C-c D") nil)
-            (define-key org2blog/wp-map (kbd "C-c t") nil)
+            (define-key org2blog/wp-entry-mode-map (kbd "C-c p") nil)
+            (define-key org2blog/wp-entry-mode-map (kbd "C-c P") nil)
+            (define-key org2blog/wp-entry-mode-map (kbd "C-c d") nil)
+            (define-key org2blog/wp-entry-mode-map (kbd "C-c D") nil)
+            (define-key org2blog/wp-entry-mode-map (kbd "C-c t") nil)
 
             (local-set-key (kbd "C-c b p") 'org2blog/wp-post-buffer-and-publish)
             (local-set-key (kbd "C-c b P") 'org2blog/wp-post-buffer-as-page-and-publish)
