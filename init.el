@@ -20,27 +20,30 @@
 ;; ===================== setup file
 
 ;; credentials using netrc (it can deal with space in entries)
-(defvar *BLOG-PACK-CREDENTIALS-FILE* (concat (getenv "HOME") "/.netrc"))
+(defvar *BLOG-PACK-CREDENTIALS-FILE* (concat (getenv "HOME") "/.authinfo.gpg"))
 
 ;; ===================== setup functions
 
-(defun blog-pack/--setup-possible-p (creds-file) "Check if the installation is possible by checking the existence of the file and that the entry 'blog' and 'blog-description' are indeed installed."
+(defun blog-pack/--setup-possible-p (creds-file)
+  "Check if the installation is possible by checking the existence of the file and that the entry 'blog' and 'blog-description' are indeed installed."
   (let ((parsed-file (netrc-parse creds-file)))
-    (and parsed-file ;; nil if the file does not exist
-         (netrc-machine parsed-file "blog")
-         (netrc-machine parsed-file "blog-description"))))
+    (when (and parsed-file ;; nil if the file does not exist
+               (netrc-machine parsed-file "blog")
+               (netrc-machine parsed-file "blog-description"))
+      parsed-file)))
 
-(defun blog-pack/--setup (creds-file) "The org2blog setup (no check on the existence of the file)."
+(defun blog-pack/--setup (creds-file creds-file-content)
+  "The org2blog setup (no check on the existence of the file)."
 
   ;; load the entry tony-blog in the ~/.netrc, we obtain a hash-map with the needed data
-  (setq blog (netrc-machine (netrc-parse creds-file) "blog" t))
+  (setq blog (netrc-machine creds-file-content "blog" t))
 
   (setq blog-login (netrc-get blog "login"))
   (setq blog-pass (netrc-get blog "password"))
 
   ;; blog description using creds (wrap the password in " if there is space in it)
 
-  (setq blog-description (creds/get (creds/read-lines creds-file) "blog-description"))
+  (setq blog-description (creds/get creds-file-content "blog-description"))
 
   ;; name of the blog
   (setq blog-name (creds/get-entry blog-description "blog-name"))
@@ -71,10 +74,10 @@
 
 ;; ===================== setup routine
 
-(if (blog-pack/--setup-possible-p *BLOG-PACK-CREDENTIALS-FILE*)
+(-if-let (creds-file-content (blog-pack/--setup-possible-p *BLOG-PACK-CREDENTIALS-FILE*))
     (progn
       (message (concat *BLOG-PACK-CREDENTIALS-FILE* " found! Running org2blog setup..."))
-      (blog-pack/--setup *BLOG-PACK-CREDENTIALS-FILE*)
+      (blog-pack/--setup *BLOG-PACK-CREDENTIALS-FILE* creds-file-content)
       (message "Setup done!"))
   (progn
     (message (concat "You need to setup the credentials file " *BLOG-PACK-CREDENTIALS-FILE* " for this to work.\n"
