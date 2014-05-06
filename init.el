@@ -19,6 +19,9 @@
 
 ;; ===================== setup file
 
+;; activate option to keep the passphrase (it's preferable to use gpg-agent but I did not yet succeeded in doing so)
+(setq epa-file-cache-passphrase-for-symmetric-encryption t)
+
 ;; credentials using netrc (it can deal with space in entries)
 (defvar *BLOG-PACK-CREDENTIALS-FILE* (concat (getenv "HOME") "/.authinfo.gpg"))
 
