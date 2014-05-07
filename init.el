@@ -29,18 +29,18 @@
 
 (defun blog-pack/--setup-possible-p (creds-file)
   "Check if the installation is possible by checking the existence of the file and that the entry 'blog' and 'blog-description' are indeed installed."
-  (let ((parsed-file (netrc-parse creds-file)))
+  (let ((parsed-file (creds/read-lines creds-file)))
     (when (and parsed-file ;; nil if the file does not exist
-               (netrc-machine parsed-file "blog")
-               (netrc-machine parsed-file "blog-description"))
+               (creds/get parsed-file "blog")
+               (creds/get parsed-file "blog-description"))
       parsed-file)))
 
-(defun blog-pack/--setup (creds-file creds-file-content)
+(defun blog-pack/--setup (creds-file-content)
   "The org2blog setup (no check on the existence of the file)."
-  (message (format "'%s' found! Running org2blog setup..." creds-file))
-  (let* ((blog             (netrc-machine creds-file-content "blog" t))
-         (blog-login       (netrc-get blog "login"))
-         (blog-pass        (netrc-get blog "password")) ;; (wrap the password in " if there is space in it)
+  (message (format "Running blog-pack setup..."))
+  (let* ((blog             (creds/get creds-file-content "blog"))
+         (blog-login       (creds/get-entry blog "login"))
+         (blog-pass        (creds/get-entry blog "password")) ;; (wrap the password in " if there is space in it)
          (blog-description (creds/get creds-file-content "blog-description"))
          (blog-name        (creds/get-entry blog-description "blog-name"))
          (blog-url-rpc     (creds/get-entry blog-description "blog-url-rpc")))
@@ -68,7 +68,7 @@
 ;; ===================== setup routine
 
 (-if-let (creds-file-content (blog-pack/--setup-possible-p *BLOG-PACK-CREDENTIALS-FILE*))
-    (blog-pack/--setup *BLOG-PACK-CREDENTIALS-FILE* creds-file-content)
+    (blog-pack/--setup creds-file-content)
   (message (concat "You need to setup the credentials file " *BLOG-PACK-CREDENTIALS-FILE* " for this to work.\n"
                    "Here is the needed content to setup to your need into '" *BLOG-PACK-CREDENTIALS-FILE* "':\n"
                    "machine blog login <your-wordpress-login> password <your-wordpress-password-inside-quote>\n"
