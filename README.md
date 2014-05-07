@@ -27,7 +27,7 @@ Add this snippet in your `prelude-packs.el`:
 
 # Setup
 
-Create a `~/.netrc` file with your wordpress credentials your blog description:
+Create a `~/.authinfo.gpg` file with your wordpress credentials your blog description:
 
 ## Credentials
 
