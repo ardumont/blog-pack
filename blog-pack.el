@@ -4,6 +4,7 @@
 
 ;;; Code:
 
+(require 'install-packages-pack)
 (install-packs '(;; need org2blog as a glue between org-mode and wordpress
                  xml-rpc
                  org2blog
@@ -75,4 +76,5 @@
                    "machine blog-description blog-name <blog-name-you-desire> blog-url-rpc http://<path-to-your-blog-ip-and-folder>/xmlrpc.php\n"
                    "Then `M-x encrypt-epa-file` to generate the required ~/.authinfo.gpg and remove ~/.authinfo")))
 
+(provide 'blog-pack)
 ;;; blog-pack.el ends here
