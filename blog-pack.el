@@ -68,13 +68,18 @@
 
 ;; ===================== setup routine
 
-(-if-let (creds-file-content (blog-pack/--setup-possible-p *BLOG-PACK-CREDENTIALS-FILE*))
-    (blog-pack/--setup creds-file-content)
-  (message (concat "You need to setup the credentials file " *BLOG-PACK-CREDENTIALS-FILE* " for this to work.\n"
-                   "Here is the needed content to setup to your need into '" *BLOG-PACK-CREDENTIALS-FILE* "':\n"
-                   "machine blog login <your-wordpress-login> password <your-wordpress-password-inside-quote>\n"
-                   "machine blog-description blog-name <blog-name-you-desire> blog-url-rpc http://<path-to-your-blog-ip-and-folder>/xmlrpc.php\n"
-                   "Then `M-x encrypt-epa-file` to generate the required ~/.authinfo.gpg and remove ~/.authinfo")))
+(defun blog-pack/load-pack! ()
+  (interactive)
+  "A routine to (re)load the blog-pack."
+  (-if-let (creds-file-content (blog-pack/--setup-possible-p *BLOG-PACK-CREDENTIALS-FILE*))
+      (blog-pack/--setup creds-file-content)
+    (message (concat "You need to setup the credentials file " *BLOG-PACK-CREDENTIALS-FILE* " for this to work.\n"
+                     "Here is the needed content to setup to your need into '" *BLOG-PACK-CREDENTIALS-FILE* "':\n"
+                     "machine blog login <your-wordpress-login> password <your-wordpress-password-inside-quote>\n"
+                     "machine blog-description blog-name <blog-name-you-desire> blog-url-rpc http://<path-to-your-blog-ip-and-folder>/xmlrpc.php\n"
+                     "Then `M-x encrypt-epa-file` to generate the required ~/.authinfo.gpg and remove ~/.authinfo"))))
+
+(blog-pack/load-pack!)
 
 (provide 'blog-pack)
 ;;; blog-pack.el ends here
