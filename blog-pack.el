@@ -79,7 +79,5 @@
                      "machine blog-description blog-name <blog-name-you-desire> blog-url-rpc http://<path-to-your-blog-ip-and-folder>/xmlrpc.php\n"
                      "Then `M-x encrypt-epa-file` to generate the required ~/.authinfo.gpg and remove ~/.authinfo"))))
 
-(blog-pack/load-pack!)
-
 (provide 'blog-pack)
 ;;; blog-pack.el ends here
