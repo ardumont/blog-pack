@@ -5,11 +5,11 @@
 ;;; Code:
 
 (require 'install-packages-pack)
-(install-packs '(;; need org2blog as a glue between org-mode and wordpress
-                 xml-rpc
-                 org2blog
-                 creds
-                 org))
+(install-packages-pack/install-packs '(;; need org2blog as a glue between org-mode and wordpress
+                                       xml-rpc
+                                       org2blog
+                                       creds
+                                       org))
 
 ;; ===================== lib
 
