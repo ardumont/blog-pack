@@ -17,7 +17,23 @@
                       '(org2jekyll/jekyll-drafts-dir "_drafts/")
                       '(org2jekyll/jekyll-posts-dir  "_posts/")
                       '(org-publish-project-alist
-                        `(("tony-blog"
+                        `(("org"
+                           :base-directory ,(org2jekyll/input-directory)
+                           :base-extension "org"
+                           ;; :publishing-directory "/ssh:user@host:~/html/notebook/"
+                           :publishing-directory ,(org2jekyll/output-directory "blog")
+                           :publishing-function org-html-publish-to-html
+                           :headline-levels 4
+                           :section-numbers nil
+                           :with-toc nil
+                           :html-head "<link rel=\"stylesheet\" href=\"./css/style.css\" type=\"text/css\"/>"
+                           :html-preamble t
+                           :recursive t
+                           :make-index t
+                           :html-extension "html"
+                           :body-only t)
+
+                          ("tony-blog"
                            :base-directory ,(org2jekyll/input-directory)
                            :base-extension "org"
                            :publishing-directory ,(org2jekyll/output-directory org2jekyll/jekyll-posts-dir)
