@@ -10,18 +10,17 @@
 (require 'org)
 (require 'org2jekyll)
 
-(custom-set-variables '(org2jekyll/blog-entry        "tony-blog")
-                      '(org2jekyll/blog-author       "ardumont")
+(custom-set-variables '(org2jekyll/blog-author       "ardumont")
                       '(org2jekyll/source-directory  (expand-file-name "~/org/"))
                       '(org2jekyll/jekyll-directory  (expand-file-name "~/public_html/"))
                       '(org2jekyll/jekyll-drafts-dir "_drafts/")
                       '(org2jekyll/jekyll-posts-dir  "_posts/")
                       '(org-publish-project-alist
-                        `(("org"
+                        `(("default"
                            :base-directory ,(org2jekyll/input-directory)
                            :base-extension "org"
                            ;; :publishing-directory "/ssh:user@host:~/html/notebook/"
-                           :publishing-directory ,(org2jekyll/output-directory "blog")
+                           :publishing-directory ,(org2jekyll/output-directory)
                            :publishing-function org-html-publish-to-html
                            :headline-levels 4
                            :section-numbers nil
@@ -33,7 +32,7 @@
                            :html-extension "html"
                            :body-only t)
 
-                          ("tony-blog"
+                          ("post"
                            :base-directory ,(org2jekyll/input-directory)
                            :base-extension "org"
                            :publishing-directory ,(org2jekyll/output-directory org2jekyll/jekyll-posts-dir)
@@ -66,7 +65,7 @@
                            :publishing-directory ,(org2jekyll/output-directory "css")
                            :publishing-function org-publish-attachment)
 
-                          ("website" :components ("org" "tony-blog" "images" "js" "css")))))
+                          ("website" :components ("default" "post" "images" "js" "css")))))
 
 (provide 'blog-pack)
 ;;; blog-pack.el ends here
