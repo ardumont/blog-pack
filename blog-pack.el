@@ -13,7 +13,7 @@
 (custom-set-variables '(org2jekyll/blog-author       "ardumont")
                       '(org2jekyll/source-directory  (expand-file-name "~/org/"))
                       '(org2jekyll/jekyll-directory  (expand-file-name "~/public_html/"))
-                      '(org2jekyll/jekyll-drafts-dir "_drafts/")
+                      '(org2jekyll/jekyll-drafts-dir "")
                       '(org2jekyll/jekyll-posts-dir  "_posts/")
                       '(org-publish-project-alist
                         `(("default"
@@ -51,19 +51,22 @@
                            :base-directory ,(org2jekyll/input-directory "img")
                            :base-extension "jpg\\|gif\\|png"
                            :publishing-directory ,(org2jekyll/output-directory "img")
-                           :publishing-function org-publish-attachment)
+                           :publishing-function org-publish-attachment
+                           :recursive t)
 
                           ("js"
                            :base-directory ,(org2jekyll/input-directory "js")
                            :base-extension "js"
                            :publishing-directory ,(org2jekyll/output-directory "js")
-                           :publishing-function org-publish-attachment)
+                           :publishing-function org-publish-attachment
+                           :recursive t)
 
                           ("other"
                            :base-directory ,(org2jekyll/input-directory "css")
                            :base-extension "css\\|el"
                            :publishing-directory ,(org2jekyll/output-directory "css")
-                           :publishing-function org-publish-attachment)
+                           :publishing-function org-publish-attachment
+                           :recursive t)
 
                           ("website" :components ("default" "post" "images" "js" "css")))))
 
