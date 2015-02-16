@@ -10,11 +10,11 @@
 (require 'org)
 (require 'org2jekyll)
 
-(custom-set-variables '(org2jekyll/blog-author       "ardumont")
-                      '(org2jekyll/source-directory  (expand-file-name "~/org/"))
-                      '(org2jekyll/jekyll-directory  (expand-file-name "~/public_html/"))
-                      '(org2jekyll/jekyll-drafts-dir "")
-                      '(org2jekyll/jekyll-posts-dir  "_posts/")
+(custom-set-variables '(org2jekyll-blog-author       "ardumont")
+                      '(org2jekyll-source-directory  (expand-file-name "~/org/"))
+                      '(org2jekyll-jekyll-directory  (expand-file-name "~/public_html/"))
+                      '(org2jekyll-jekyll-drafts-dir "")
+                      '(org2jekyll-jekyll-posts-dir  "_posts/")
                       '(org-publish-project-alist
                         `(("default"
                            :base-directory ,(org2jekyll/input-directory)
