@@ -60,14 +60,14 @@
                              :publishing-function org-publish-attachment
                              :recursive t)
 
-                            ("other"
+                            ("css"
                              :base-directory ,(org2jekyll-input-directory "css")
                              :base-extension "css\\|el"
                              :publishing-directory ,(org2jekyll-output-directory "css")
                              :publishing-function org-publish-attachment
                              :recursive t)
 
-                            ("website" :components ("default" "post" "images" "js" "css"))))))
+                            ("web" :components ("images" "js" "css"))))))
 
 (provide 'blog-pack)
 ;;; blog-pack.el ends here
