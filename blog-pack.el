@@ -4,6 +4,9 @@
 
 ;;; Code:
 
+(require 'install-packages-pack)
+(install-packages-pack/install-pack 'use-package)
+
 (require 'use-package)
 
 (use-package org2jekyll
